@@ -65,4 +65,4 @@ void vector3_print(const Vector3& vec){
     std::cout<<"]"<<" "<<vec.VECTOR_SIZE<<'\n';
 };
 
-}  // namespace l2
+}  

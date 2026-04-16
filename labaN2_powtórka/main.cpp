@@ -13,29 +13,26 @@ void print_readable_character(std::byte byte)
 
 void dump_memory(std::byte* start, size_t count)
 {
-    const long int window_width = 8;
+     long int window_size=8;
 
-    std::byte* end= count + start;
+     std::byte* end = start + count;
+    for(std::byte* i=start ; i < end ; i+=8){
+        std::cout << i <<' ' ;
+        
+        int max = std::min(end-i,window_size);
 
-
-    for(std::byte* i=start; i<end; i+=window_width){
-        int max=std::min(end-i,window_width);
-
-        std::cout<< std::hex<< i <<':'<<" ";
-        for(int j=0;j<max;j++){
-            std::cout << std::setfill('0') << std::setw(2) << std::hex << static_cast<unsigned int>(*(i + j))
-                      << " ";
+        for(int j=1;j<max ;j++ ){
+            std::cout<<std::setw(2)<<std::setfill('0')<<std::hex<<static_cast<unsigned int>(*(j+i));
         }
-        std::cout<<'|';
-
-        for(int j=0; j < max ; j++){
+        std::cout<<':'<<' ';
+        for(int j=1;j<max;j++){
             print_readable_character(*(i+j));
         }
-        std::cout<<'|' <<std::endl;
+        std::cout<<std::endl;
     }
-    std::cout<<start<<'\n';
-    // STAGE 3: Implement me!
-    // Hint: you can use print_readable_character function to print arbitrary byte as character
+
+
+    
 }
 
 int main()
@@ -63,7 +60,6 @@ int main()
     delete vec5;
     std::cout<<'\n';
     std::cout << "STAGE 2 and 3" << std::endl;
-    
   
     
     const int array_size = 10;
@@ -82,8 +78,8 @@ int main()
         //l2::vector3_print(vec);
     }
 
-    dump_memory(reinterpret_cast<std::byte*> (tablica_dynamiczna),sizeof(l2::Vector3)*array_size);
-
+//
+    dump_memory(reinterpret_cast<std::byte*>(tablica_dynamiczna) , sizeof(tablica_dynamiczna) * array_size );
 
     delete [] tablica_dynamiczna;
     std::cout << "STAGE 4" << std::endl;
@@ -98,7 +94,7 @@ int main()
 
     dump_memory(reinterpret_cast<std::byte*>(&some_string),sizeof(l2::HoleyString));
     std::cout << "STAGE 5" << std::endl;
-
+    
     // STAGE 5: test your memcpy and memmove implementations here
 
     return 0;
