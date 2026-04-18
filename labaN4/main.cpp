@@ -3,7 +3,7 @@
 #include <memory>
 
 #include "SongDuration.hpp"
-
+#include "Song.hpp"
 int main() {
 
     std::cout << "*************** PART 1 (SongDuration) ***************\n\n";
@@ -19,7 +19,7 @@ int main() {
 
     std::cout << "\n*************** PART 2 (Song) ***************\n\n";
 
-    /*
+    
     Song song1;
     Song song2("Recursion Anthem", duration2, "Stack Overflow");
     Song song3("Binary Love", 3, 45, "The Algorithms");
@@ -42,7 +42,7 @@ int main() {
     std::cout << "get_title(): " << song1.get_title() << std::endl;
     std::cout << "get_artist(): " << song1.get_artist() << std::endl;
     std::cout << "get_duration(): " << song1.get_duration() << std::endl;
-    */
+    
 
     std::cout << "\n*************** PART 3 (Playlist) ***************\n\n";
 
