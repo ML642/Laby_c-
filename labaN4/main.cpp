@@ -82,7 +82,7 @@ int main() {
 
     std::cout << "\n*************** PART 4 (Smart Pointers) ***************\n\n";
 
-    /*
+    
     struct Dummy {
         char id;
         Dummy(char id) : id(id) {
@@ -94,17 +94,23 @@ int main() {
     };
 
     // [TODO 1]: Zdefiniuj dwa puste wektory przechowujÄce shared_ptr do Dummy
-    // v1
-    // v2
-    {
+     std::vector <std::shared_ptr<Dummy>> v1 ;
+     std::vector <std::shared_ptr<Dummy>> v2 ;
+     {
         // [TODO 1]: Zdefiniuj 3 zmienne przechowujÄce shared_ptr do Dummy z identyfikatorami A, B i C
-        // A
-        // B
+        std::shared_ptr<Dummy> A(new Dummy('A'));
+        std::shared_ptr<Dummy> B(new Dummy('B'));
+        std::shared_ptr<Dummy> C(new Dummy('C'));
         // C
 
         // [TODO 1]: Dodaj A, B i C do v1
 
+        v1.push_back(A);
+        v1.push_back(B);
+        v1.push_back(C);
         // [TODO 1]: Dodaj B i C do v2
+        v2.push_back(B);
+        v2.push_back(C);
     }
 
     std::cout << "\nClearing v1" << std::endl;
@@ -116,10 +122,16 @@ int main() {
     std::cout << std::endl;
 
     // [TODO 2]: Zdefiniuj pusty wektor przechowujÄcy unique_ptr do Dummy
-    // v3
+    std::vector<std::unique_ptr<Dummy>> v3;
 
     // [TODO 2]: Dodaj do v3 dwa unique_ptr z identyfikatorami D i E
-    */
+    std::unique_ptr<Dummy> D(new Dummy('D'));
+    std::unique_ptr<Dummy> E(new Dummy('E'));
+
+    v3.push_back(std::move(D));
+    v3.push_back(std::move(E));
+                                 
+
 
     return 0;
 }
