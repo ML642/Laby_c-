@@ -2,7 +2,7 @@
 #include "Song.hpp"
 
 Playlist::Playlist():capacity(1),size(0),songs(nullptr){
-    songs= new Song[capacity];
+    songs = new Song[capacity];
 };
 
 Playlist::Playlist(int capacity):capacity(capacity),size(0),songs(nullptr){

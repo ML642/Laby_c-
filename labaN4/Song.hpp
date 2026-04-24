@@ -34,7 +34,7 @@ class Song {
         int get_duration();
 
         void set_duration(int seconds);
-
+        
         static int  get_total_songs();
         
         
