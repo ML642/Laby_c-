@@ -111,11 +111,13 @@ Task& Task::operator=(const Task& other){
 };
 
 Task& Task::operator=(Task&& other){
+    
     if(this == &other )return *this ;
+    clear();
     this->description = other.description; 
     this->head = other.head;
 
-    //clear(other);
+    
     other.head = nullptr;
 
     return *this;
@@ -142,9 +144,8 @@ Task::Task(const Task& other){
     }
 
 };
-Task::Task(Task&& other){
-    this->description = other.description; 
-    this->head = other.head;
-    //clear(other);
+Task::Task(Task&& other)
+    : description(std::move(other.description)), head(other.head)
+{
     other.head = nullptr;
 }
