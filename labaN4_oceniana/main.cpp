@@ -2,7 +2,7 @@
 #include <memory>
 
 #include "Subtask.hpp"
-//#include "Task.hpp"
+#include "Task.hpp"
 
 int main() {
 
@@ -20,7 +20,7 @@ int main() {
     std::cout << std::endl << "s0: completed=" << s0.is_completed() << ", priority=" << s0.get_priority() << std::endl;
     
     std::cout << "\n*************** PART 2 (Task - no copy/move) ***************\n\n";
-    /*
+    
     Task t1("Finish C++ project");
     t1.add_subtask(Subtask("Write the documentation"));
     t1.add_subtask(Subtask("Run tests", 5, true));
@@ -43,9 +43,9 @@ int main() {
 
     t2.clear();
     t2.print();
-    */
+    
     std::cout << "\n*************** PART 3 (Task - copy/move) ***************\n\n";
-    /*
+    
     Task t_copy1(t1);
     std::cout << "Task copy (constructor):" << std::endl;
     t_copy1.print();
@@ -63,7 +63,7 @@ int main() {
     t_move2 = std::move(t_copy2);
     std::cout << "\nTask moved (assignment):" << std::endl;
     t_move2.print();
-    */
+    
 
     return 0;
 }

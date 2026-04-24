@@ -14,7 +14,16 @@ class Task {
         SubtaskNode* head;
     public:
         Task(std::string s);
+        Task();
         ~Task();
+
+        Task& operator=(const Task& other);
+
+        Task& operator=(Task&& other);
+
+        Task(const Task& other);
+
+        Task(Task&& other);
 
         void add_subtask(const Subtask& subtask);
         void complete_subtask(unsigned int index);
