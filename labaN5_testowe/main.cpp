@@ -2,7 +2,7 @@
 #include <iomanip>
 
 #include "Movie.hpp"
-//#include "MovieCollection.hpp"
+#include "MovieCollection.hpp"
 
 int main() {
 
@@ -76,7 +76,7 @@ int main() {
     }
     
     std::cout << "\n*************** PART 3 (MovieCollection) ***************\n\n";
-    /*
+    
     MovieCollection collection;
 
     Movie<double> dunkirk("Dunkirk", 2017, director1);
@@ -109,15 +109,17 @@ int main() {
     std::cout << "Total number of movies: " << allMovies.size() << "\n\n";
 
     std::cout << "Movies under letter 'I':\n";
-    auto it = collection.getMoviesByLetter().find('I');
+    const auto& moviesByLetter = collection.getMoviesByLetter();
+
+    auto it = moviesByLetter.find('I');
     if (it != collection.getMoviesByLetter().end()) {
         for (const auto& movie : it->second) {
             std::cout << movie << "\n";
         }
     }
-    */
+    
     std::cout << "\n*************** PART 4 (MovieCollection  - additional functionality) ***************\n\n";
-    /*
+    
     auto foundMovie = collection.findMovieWithAverageAbove(8.0);
     if (foundMovie) {
         std::cout << "Found a movie with average rating above 8.0:\n" << *foundMovie << "\n";
@@ -128,7 +130,7 @@ int main() {
     collection.sortMovies();
     std::cout << "\nMovies after sorting:\n";
     std::cout << collection << "\n";
-
+/*
     collection.removeMoviesOlderThan('I', 2015);
     std::cout << "Movies after removing movies before 2015 under letter 'I':\n";
     std::cout << collection << "\n";

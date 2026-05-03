@@ -25,8 +25,8 @@ class Movie{
         std::string getTitle()const {return this->title;}
         int getYear()const{return this->year;}
         std::optional<std::string> getDescription()const {return this->description;}
-        std::variant<Director,std::string> getDirector()const {return this->director;}
-        std::list<RatingType> getRatings()const {return this->ratings;}
+        const std::variant<Director,std::string>& getDirector()const {return this->director;}
+        const std::list<RatingType>& getRatings()const {return this->ratings;}
 
         RatingType getAverageRating()const {
             if(this->ratings.size() == 0 )return RatingType(0);
@@ -61,25 +61,25 @@ class Movie{
 };
 
 
-template<typename RatingType>
-std::ostream& operator<<(std::ostream& os ,const   Movie<RatingType>& movie) {
-    std::string NameoftheAuther;
-    int Tittle;
-    
-    const auto& d = movie.getDirector();
+template<class RatingType>
+std::ostream& operator<<(std::ostream& os, const Movie<RatingType>& movie) {
+    os << movie.getTitle() << " (" << movie.getYear() << "), ";
 
-if (d.index() == 0) {
-    const auto& dir = std::get<typename Movie<RatingType>::Director>(d);
-    NameoftheAuther = dir.name;
-    Tittle = dir.numberOfOscars;
+    if (std::holds_alternative<typename Movie<RatingType>::Director>(movie.getDirector())) {
+        const auto& director = std::get<typename Movie<RatingType>::Director>(movie.getDirector());
+        os << "Director: " << director.name << " (Oscars: " << director.numberOfOscars << "), ";
+    } else {
+        os << "Director: " << std::get<std::string>(movie.getDirector()) << ", ";
+    }
+
+    os << "Avg: " << movie.getAverageRating() << ", Top: " << movie.getTopRating();
+
+    if (movie.getDescription()) {
+        os << "\nDescription: " << *movie.getDescription();
+    }
+
+    return os;
 }
-else {
-    NameoftheAuther = std::get<std::string>(d);
-    Tittle = 0;
-}
-            os << movie.getTitle() <<" (" << movie.getYear() << " )"  <<", Director: "<< NameoftheAuther<< "(Oskars:"<<Tittle<<" )"<<"Avg: " <<movie.getAverageRating()<< " Top : "<<movie.getTopRating();
-            return os;
-        };
 
 template<typename RatingType>
 bool operator<(const Movie<RatingType>& other1 , const Movie<RatingType>& other2)  {
