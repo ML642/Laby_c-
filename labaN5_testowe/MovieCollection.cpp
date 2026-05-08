@@ -1,5 +1,7 @@
 #include "MovieCollection.hpp"
 
+#include <numeric>
+
 std::map<char, std::vector<Movie<double>>> MovieCollection::getMoviesByLetter() const{
     return this->moviesByLetter;
 };
@@ -67,3 +69,74 @@ void MovieCollection::sortMovies() {
         std::sort(vec.begin(), vec.end());
     }
 }
+
+
+
+void MovieCollection::removeMoviesOlderThan(char letter , int year){
+    struct functor{
+        functor(int year):x(year){};
+        int x;
+        bool operator()(const Movie<double>& movie){
+            if( movie.getYear() < x ) {
+                //std::cout<<"USUWAM";
+                return true;}
+            return false; 
+        }
+    };
+    
+    for(auto& [key,vec] : this->moviesByLetter){
+        if(key == letter){
+            //std::cout<<"dafdsafasdfasd";
+            vec.erase(std::remove_if(vec.begin() , vec.end() , functor(year)),vec.end());
+        }
+    }
+};
+
+
+float MovieCollection::getAverageTopRating(){
+    std::vector<Movie<double>> ALL_movies = this->getAllMovies();
+
+    struct functor_acc{
+        float operator()(float accumulate,Movie<double> movie2){
+            return accumulate + movie2.getTopRating();
+        }
+    };
+
+    float all = std::accumulate(ALL_movies.begin() ,  ALL_movies.end() , 0.0f , functor_acc() );
+
+    return all/ALL_movies.size();
+};
+
+std::vector<Movie<double>> MovieCollection::getMoviesByDirector(const std::string& director)const {
+    std::vector<Movie<double>> ALL_movies = this->getAllMovies();
+
+    std::vector<Movie<double>> movies_by_Director;
+
+    struct funktor_d{
+        funktor_d(const std::string& name){
+            this->director = name ;
+        }
+        std::string director;
+        bool operator()(const Movie<double>& movie){
+            std::string director1;
+            if(std::holds_alternative<Movie<double>::Director>(movie.getDirector())){
+                director1 = std::get<typename Movie<double>::Director>(movie.getDirector()).name;
+            }
+            else{
+                
+                director1= std::get<typename std::string>(movie.getDirector());
+            }
+            if(director1 == this->director){
+                return true;
+            }
+            else {
+                return false;
+            }
+        };
+
+    };
+    std::copy_if(ALL_movies.begin(),ALL_movies.end(),std::back_inserter(movies_by_Director),funktor_d(director));
+
+    return movies_by_Director;
+}
+

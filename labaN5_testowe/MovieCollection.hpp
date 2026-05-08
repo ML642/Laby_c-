@@ -15,6 +15,9 @@ class MovieCollection{
         void addMovie(const Movie<double>& movie);
         void sortMovies();
         std::optional<Movie<double>> findMovieWithAverageAbove(double threshold) const;
+        std::vector<Movie<double>> getMoviesByDirector(const std::string& director)const;
+        float getAverageTopRating() ;
+        void removeMoviesOlderThan(char letter, int year);
 };
 
 std::ostream& operator<<(std::ostream& os,const MovieCollection& movie);

@@ -130,13 +130,13 @@ int main() {
     collection.sortMovies();
     std::cout << "\nMovies after sorting:\n";
     std::cout << collection << "\n";
-/*
+
     collection.removeMoviesOlderThan('I', 2015);
     std::cout << "Movies after removing movies before 2015 under letter 'I':\n";
     std::cout << collection << "\n";
 
-    double averageTop = collection.getAverageTopRating();
-    std::cout << "Average of top ratings across all movies: " << averageTop << "\n";
+     double averageTop = collection.getAverageTopRating();
+     std::cout << "Average of top ratings across all movies: " << averageTop << "\n";
 
     auto nolanMovies = collection.getMoviesByDirector("Christopher Nolan");
     std::cout << "\nMovies directed by Christopher Nolan:\n";
@@ -144,11 +144,11 @@ int main() {
         std::cout << movie << "\n";
     }
 
-    auto andersonMovies = collection.getMoviesByDirector("Wes Anderson");
-    std::cout << "\nMovies directed by Wes Anderson:\n";
-    for (const auto& movie : andersonMovies) {
-        std::cout << movie << "\n";
-    }
-    */
+    // auto andersonMovies = collection.getMoviesByDirector("Wes Anderson");
+    // std::cout << "\nMovies directed by Wes Anderson:\n";
+    // for (const auto& movie : andersonMovies) {
+    //     std::cout << movie << "\n";
+    // }
+    
     return 0;
 }

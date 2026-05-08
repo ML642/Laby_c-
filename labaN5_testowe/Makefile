@@ -2,6 +2,10 @@ COMPILER=g++
 
 .PHONY:clear 
 
+run:clear program
+	./program
+
+
 program:main.o MovieCollection.o
 	${COMPILER}  main.o  MovieCollection.o -o program
 
