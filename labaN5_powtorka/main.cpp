@@ -2,12 +2,13 @@
 #include <iomanip>
 
 // TODO: Include your header files here
+
 #include "Sensor.hpp"
-#include "SensorCollection.hpp"
+
 #define PART1
 #define PART2
-#define PART3
-#define PART4
+// #define PART3
+// #define PART4
 
 int main() {
     std::cout << std::fixed << std::setprecision(2);
@@ -83,26 +84,26 @@ int main() {
     collection.removeShortSensors("thermal", 2);
     collection.removeShortSensors("cooling", 1);
 
-     double totalMin = collection.getTotalMinSum();
-     std::cout << "\nTotal of minimum values across all sensors: " << totalMin << "\n";
-     std::cout << "Total of minimum values across all sensors (empty collection): " << emptyCollection.getTotalMinSum() << "\n";
+    double totalMin = collection.getTotalMinSum();
+    std::cout << "\nTotal of minimum values across all sensors: " << totalMin << "\n";
+    std::cout << "Total of minimum values across all sensors (empty collection): " << emptyCollection.getTotalMinSum() << "\n";
 
-      std::cout << "\nSensors containing 'Temp':\n";
-    // for (const auto& s : collection.getSensorsContaining("Temp")) {
-    //     std::cout << s << "\n";
-    // }
-    // std::cout << "Count of sensors containing 'RAM' (empty collection):" << emptyCollection.getSensorsContaining("RAM").size() << "\n";
+    std::cout << "\nSensors containing 'Temp':\n";
+    for (const auto& s : collection.getSensorsContaining("Temp")) {
+        std::cout << s << "\n";
+    }
+    std::cout << "Count of sensors containing 'RAM' (empty collection):" << emptyCollection.getSensorsContaining("RAM").size() << "\n";
 
-    // auto maybeSensor = collection.findHighestRMS();
-    // if (maybeSensor) {
-    //     std::cout << "\n[OK] Sensor with highest RMS:\n" << *maybeSensor << "\n";
-    // }
-    // else {
-    //     std::cout << "\n[ERROR] No sensors found.\n";
-    // }
+    auto maybeSensor = collection.findHighestRMS();
+    if (maybeSensor) {
+        std::cout << "\n[OK] Sensor with highest RMS:\n" << *maybeSensor << "\n";
+    }
+    else {
+        std::cout << "\n[ERROR] No sensors found.\n";
+    }
 
-    // auto maybeSensor2 = emptyCollection.findHighestRMS();
-    // std::cout << "This should be std::nullopt: " << ((maybeSensor2 == std::nullopt) ? "OK" : "ERROR") << "\n";
+    auto maybeSensor2 = emptyCollection.findHighestRMS();
+    std::cout << "This should be std::nullopt: " << ((maybeSensor2 == std::nullopt) ? "OK" : "ERROR") << "\n";
 #endif
     return 0;
 }

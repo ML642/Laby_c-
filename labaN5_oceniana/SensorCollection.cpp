@@ -48,3 +48,43 @@ std::ostream& operator<<(std::ostream& os , const SensorCollection& collection){
 
     return os;
 }
+
+
+void SensorCollection::reverseSensors(){
+
+    for(auto& [key, value] : this->sensorsByType){
+        value.reverse();
+    }
+};
+void SensorCollection::removeShortSensors(const std::string& type, std::size_t minCount){
+    struct descructor{
+        descructor(std::size_t minCount):x(minCount){};
+        std::size_t x;
+        bool operator()(Sensor<double> sensor){
+            if(sensor.getMeasurements().size() < x ){
+                return true;
+            }
+            else return false;
+        }
+    };
+    for(auto& [key, value] : this->sensorsByType){
+
+        if(type == key){
+            value.erase(std::remove_if(value.begin(),value.end(),descructor(minCount)), value.end()  );    
+        }
+    }
+}
+
+double SensorCollection::getTotalMinSum(){
+    struct funkctor{
+        
+        double operator()(double acc ,  Sensor<double> sensor){
+            return acc + sensor.getMin();
+        }
+    };
+    double sum = 0 ; 
+    for(auto& [key, value] : this->sensorsByType){
+        sum+= std::accumulate(value.begin() , value.end() ,0.0f,  funkctor());
+    };
+    return sum;
+}

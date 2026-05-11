@@ -13,6 +13,8 @@ class SensorCollection{
         const std::unordered_map<std::string, std::list<Sensor<double>>>& getSensorsByType() const  ;
         const std::unordered_map<std::string, std::list<Sensor<double>>>& getSensorsByType()   ;
         const std::list<Sensor<double>> getAllSensors() const ;
-
+        void reverseSensors();
+        void removeShortSensors(const std::string& type, std::size_t minCount);
+        double getTotalMinSum();
 };
 std::ostream& operator<<(std::ostream& os , const SensorCollection& collection);
