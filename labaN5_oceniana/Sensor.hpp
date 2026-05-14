@@ -22,14 +22,14 @@ class Sensor{
         std::string getLabel() const {
             return this->label;
         };
-        std::variant<Identity,std::string> getSource()const{
+        std::variant<Identity,std::string> getSource() const{
             return this->source;
         };
         
-        std::optional<std::string> getUnit()const {
+        std::optional<std::string> getUnit() const {
             return this->unit;
         };
-        std::vector<T> getMeasurements()const {
+        std::vector<T> getMeasurements() const {
             return this->measurements;
         } ;
 
