@@ -10,3 +10,4 @@ program:main.o
 
 main.o:main.cpp
 	${COMPILER} -c main.cpp -o main.o
+
